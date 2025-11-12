@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kaka Dwi Aprilianto — Portofolio</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg-1: #0f1724;
+      --bg-2: #071023;
+      --card: rgba(255,255,255,0.04);
+      --glass: rgba(255,255,255,0.06);
+      --accent: #6EE7B7; /* mint */
+      --accent-2: #7C3AED; /* purple */
+      --muted: #9aa7bf;
+      --glass-border: rgba(255,255,255,0.06);
+      --radius: 14px;
+      --container-width: 1080px;
+    }
+
+    /* Reset + base */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,0.12), transparent 8%),
+                  radial-gradient(900px 500px at 90% 90%, rgba(110,231,183,0.06), transparent 10%),
+                  linear-gradient(180deg,var(--bg-1),var(--bg-2));
+      color: #e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+
+    /* Layout */
+    .wrap{
+      max-width:var(--container-width);
+      margin:36px auto;
+      padding:28px;
+    }
+
+    header.top{
+      display:flex;
+      gap:28px;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:22px;
+    }
+
+    /* Left: hero */
+    .hero{
+      display:flex;
+      gap:22px;
+      align-items:center;
+      min-width:0;
+    }
+    .avatar {
+      width:120px;
+      height:120px;
+      border-radius:20px;
+      overflow:hidden;
+      flex:0 0 120px;
+      border:2px solid rgba(255,255,255,0.06);
+      background:linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      box-shadow: 0 6px 30px rgba(2,6,23,0.6), 0 0 30px rgba(124,58,237,0.06);
+    }
+    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+
+    .hero-title{
+      min-width:0;
+    }
+    .hero-title h1{
+      margin:0;
+      font-size:1.6rem;
+      letter-spacing:0.2px;
+      font-weight:800;
+      color:linear-gradient(90deg,#fff,#dfeaff);
+    }
+    .hero-title h2{
+      margin:6px 0 0 0;
+      font-size:0.95rem;
+      color:var(--muted);
+      font-weight:600;
+    }
+    .tags{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+    .tag{
+      font-size:0.8rem;
+      color:var(--bg-2);
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      padding:6px 10px;
+      border-radius:999px;
+      font-weight:700;
+      box-shadow:0 6px 18px rgba(124,58,237,0.12);
+      color:#071024;
+    }
+
+    /* Right: controls */
+    .controls{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:12px;
+      border:1px solid var(--glass-border);
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      color:var(--accent);
+      font-weight:700;
+      cursor:pointer;
+      text-decoration:none;
+      transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{transform:translateY(-3px); box-shadow:0 10px 30px rgba(12,17,30,0.6)}
+    .btn.secondary{
+      color:#bcd3ef;
+      background:transparent;
+      border:1px dashed rgba(255,255,255,0.04);
+      font-weight:600;
+      padding:9px 12px;
+    }
+
+    /* Main card area */
+    .card{
+      margin-top:18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:var(--radius);
+      padding:26px;
+      border:1px solid var(--glass-border);
+      box-shadow: 0 10px 40px rgba(5,7,18,0.6);
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap:20px;
+      align-items:start;
+      overflow:hidden;
+    }
+
+    /* left column */
+    .col-left{min-width:0}
+    section.block{
+      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+      border-radius:12px;
+      padding:18px;
+      margin-bottom:18px;
+      border:1px solid rgba(255,255,255,0.02);
+    }
+    .block h3{
+      margin:0 0 12px 0;
+      font-size:1.05rem;
+      color:var(--accent);
+      letter-spacing:0.9px;
+      font-weight:700;
+    }
+    .about p{color:#cfe8f8;margin:0}
+
+    /* timeline (education/experience) */
+    .timeline{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .timeline-item{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+    }
+    .timeline-item .dot{
+      width:10px;height:10px;border-radius:50%;
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      margin-top:6px;
+      box-shadow:0 6px 18px rgba(124,58,237,0.12);
+      flex:0 0 10px;
+    }
+    .timeline-item .content{
+      color:#cfe8f8;
+      font-size:0.95rem;
+    }
+    .timeline-item .content small{color:var(--muted);display:block;margin-top:6px;font-weight:600}
+
+    /* skills */
+    .skills-grid{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:12px;
+    }
+    .skill{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .skill .label{display:flex;justify-content:space-between;font-weight:700;color:#dff7ee;font-size:0.9rem}
+    .bar{
+      height:10px;
+      background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border-radius:999px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.02);
+    }
+    .bar > i{
+      display:block;height:100%;
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      width:0%;
+      border-radius:999px;
+      box-shadow:0 6px 18px rgba(124,58,237,0.12);
+      transition: width 1s cubic-bezier(.2,.9,.2,1);
+    }
+
+    /* projects */
+    .projects{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:12px;
+    }
+    .project{
+      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.007));
+      border-radius:12px;padding:14px;border:1px solid rgba(255,255,255,0.02);
+      display:flex;flex-direction:column;gap:10px;
+    }
+    .project h4{margin:0;color:#e9fdf0}
+    .project p{margin:0;color:#bcd3ef;font-size:0.92rem}
+
+    /* right column (sidebar) */
+    .col-right{
+      position:relative;
+    }
+    .card-side{
+      position:sticky;
+      top:36px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+    .contact-card{
+      background:linear-gradient(135deg, rgba(124,58,237,0.06), rgba(110,231,183,0.03));
+      border-radius:12px;padding:14px;border:1px solid rgba(255,255,255,0.03);
+    }
+    .contact-row{display:flex;align-items:center;gap:12px}
+    .contact-row svg{width:18px;height:18px;flex:0 0 18px;opacity:0.95}
+    .contact-row a{color:#071023;text-decoration:none;background:#e8fff5;padding:8px 10px;border-radius:10px;font-weight:700}
+
+    /* CTA */
+    .cta{
+      display:flex;gap:10px;margin-top:6px;flex-wrap:wrap;
+    }
+
+    /* footer note */
+    .note{margin-top:8px;color:var(--muted);font-size:0.9rem}
+
+    /* small screens */
+    @media (max-width:1000px){
+      .card{grid-template-columns:1fr; padding:18px}
+      .projects{grid-template-columns:1fr}
+      .skills-grid{grid-template-columns:1fr}
+      .hero{flex-direction:row}
+      .col-right .card-side{position:static}
+    }
+    @media (max-width:560px){
+      .wrap{padding:12px;margin:18px auto}
+      .avatar{width:88px;height:88px;border-radius:12px}
+      header.top{flex-direction:column;align-items:flex-start;gap:10px}
+      .controls{align-self:flex-end}
+      .hero-title h1{font-size:1.1rem}
+      .hero-title h2{font-size:0.86rem}
+    }
+
+    /* subtle entrance animations */
+    .fade-in{opacity:0;transform:translateY(8px);animation:fadeIn .7s forwards}
+    .stagger-1{animation-delay:.08s}
+    .stagger-2{animation-delay:.16s}
+    .stagger-3{animation-delay:.24s}
+    @keyframes fadeIn{to{opacity:1;transform:none}}
+
+    /* small decorative floating shapes */
+    .shape{
+      position:absolute;right:-60px;top:-40px;width:260px;height:260px;border-radius:50%;
+      background:radial-gradient(circle at 30% 40%, rgba(124,58,237,0.12), transparent 22%),
+                 radial-gradient(circle at 70% 70%, rgba(110,231,183,0.07), transparent 20%);
+      filter:blur(22px);pointer-events:none;mix-blend-mode:screen;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top fade-in stagger-1" aria-label="Header Utama">
+      <div class="hero">
+        <div class="avatar" aria-hidden="true">
+          <!-- Ganti src dengan foto asli -->
+          <img src="https://ui-avatars.com/api/?name=Kaka+Dwi+Aprilianto&background=6EE7B7&color=071023&rounded=true&size=512" alt="Foto Kaka Dwi Aprilianto">
+        </div>
+        <div class="hero-title">
+          <h1>Kaka Dwi Aprilianto</h1>
+          <h2>Siswa SMK — Calon Profesional IT | Teknik Komputer & Jaringan</h2>
+          <div class="tags" aria-hidden="true">
+            <span class="tag">Siap Kerja</span>
+            <span class="tag">Problem Solver</span>
+            <span class="tag">Team Player</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="controls" role="toolbar" aria-label="Tombol Aksi">
+        <a class="btn fade-in stagger-2" href="#contact" title="Hubungi saya" rel="noopener">📩 Kontak</a>
+        <a class="btn secondary fade-in stagger-3" href="#" title="Unduh CV (ganti link jika perlu)" onclick="downloadCV(event)">⬇️ Unduh CV</a>
+      </div>
+    </header>
+
+    <main class="card fade-in stagger-2" role="main">
+      <div class="col-left">
+        <!-- Tentang -->
+        <section class="block about" id="about" aria-labelledby="about-title">
+          <h3 id="about-title">Tentang Saya</h3>
+          <p>
+            Halo! Saya <strong>Kaka Dwi Aprilianto</strong>, siswa SMK jurusan Teknik Komputer & Jaringan.
+            Saya antusias belajar teknologi, jaringan, dan web dasar. Saya suka bekerja dalam tim,
+            berkomunikasi dengan jelas, dan menyelesaikan masalah teknis dengan pendekatan yang terstruktur.
+            Portofolio ini dibuat untuk membantu saya melamar kerja setelah lulus SMK.
+          </p>
+          <div class="note">Tip: ganti teks ini dengan ringkasan pengalaman, prestasi, atau tujuan karir Anda.</div>
+        </section>
+
+        <!-- Pendidikan & Pengalaman -->
+        <section class="block" aria-labelledby="edu-title">
+          <h3 id="edu-title">Pendidikan & Kegiatan</h3>
+          <div class="timeline" role="list">
+            <div class="timeline-item" role="listitem">
+              <div class="dot" aria-hidden="true"></div>
+              <div class="content">
+                <strong>SMK [Nama SMK Kamu]</strong>
+                <small>Teknik Komputer & Jaringan • 2022 — 2025</small>
+              </div>
+            </div>
+
+            <div class="timeline-item" role="listitem">
+              <div class="dot" aria-hidden="true"></div>
+              <div class="content">
+                <strong>Anggota OSIS & Panitia Sekolah</strong>
+                <small>Aktif dalam kegiatan acara, kepanitiaan, dan lomba IT</small>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Skills -->
+        <section class="block" aria-labelledby="skills-title">
+          <h3 id="skills-title">Keahlian</h3>
+          <div class="skills-grid" role="list">
+            <div class="skill" role="listitem">
+              <div class="label"><span>HTML & CSS</span><span>90%</span></div>
+              <div class="bar"><i data-value="90"></i></div>
+            </div>
+            <div class="skill" role="listitem">
+              <div class="label"><span>Jaringan Komputer</span><span>82%</span></div>
+              <div class="bar"><i data-value="82"></i></div>
+            </div>
+            <div class="skill" role="listitem">
+              <div class="label"><span>Microsoft Office</span><span>95%</span></div>
+              <div class="bar"><i data-value="95"></i></div>
+            </div>
+            <div class="skill" role="listitem">
+              <div class="label"><span>Desain Grafis Dasar</span><span>70%</span></div>
+              <div class="bar"><i data-value="70"></i></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Projects -->
+        <section class="block" aria-labelledby="proj-title">
+          <h3 id="proj-title">Proyek & Kegiatan Penting</h3>
+          <div class="projects" role="list">
+            <article class="project" role="listitem">
+              <h4>Website Sekolah (Mini)</h4>
+              <p>Membangun halaman informasi sekolah sederhana menggunakan HTML & CSS — menampilkan jadwal, kontak, dan galeri.</p>
+            </article>
+
+            <article class="project" role="listitem">
+              <h4>Instalasi Jaringan Lokal</h4>
+              <p>Implementasi jaringan LAN untuk ruang komputer laboratorium dengan konfigurasi dasar dan troubleshooting.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- Activities -->
+        <section class="block" aria-labelledby="act-title">
+          <h3 id="act-title">Organisasi & Kegiatan</h3>
+          <ul style="margin:0;padding-left:18px;color:#cfe8f8">
+            <li>Anggota OSIS — berperan dalam penyelenggaraan acara sekolah</li>
+            <li>Panitia Teknologi — membantu setup jaringan & perangkat pada event</li>
+            <li>Peserta lomba IT tingkat sekolah</li>
+          </ul>
+        </section>
+      </div>
+
+      <aside class="col-right" aria-label="Sidebar kanan">
+        <div class="card-side">
+          <div class="contact-card">
+            <h3>Kontak</h3>
+
+            <div class="contact-row" style="margin-top:8px">
+              <!-- Email icon -->
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden><path d="M3 7.5v9A2.5 2.5 0 0 0 5.5 19h13A2.5 2.5 0 0 0 21 16.5v-9A2.5 2.5 0 0 0 18.5 5h-13A2.5 2.5 0 0 0 3 7.5z" stroke="#b6ebd5" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 7.5l-9 6-9-6" stroke="#b6ebd5" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <a href="mailto:kakadwiapril@gmail.com">kakadwiapril@gmail.com</a>
+            </div>
+
+            <div class="contact-row">
+              <!-- Phone icon -->
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.09 4.18 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.72c.12 1.05.37 2.07.72 3.03a2 2 0 0 1-.45 2.11L8.91 10.91a16 16 0 0 0 6 6l1.05-1.05a2 2 0 0 1 2.11-.45c.96.35 1.98.6 3.03.72A2 2 0 0 1 22 16.92z" stroke="#b6ebd5" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <a href="https://wa.me/62xxxxxxxxxx" target="_blank" rel="noopener">+62xxxxxxxxxx</a>
+            </div>
+
+            <div class="contact-row">
+              <!-- Location icon -->
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 1 1 18 0z" stroke="#b6ebd5" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" stroke="#b6ebd5" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span style="color:#071023;background:#e8fff5;padding:8px 10px;border-radius:10px;font-weight:700">[Kota, Provinsi]</span>
+            </div>
+
+            <div class="cta" style="margin-top:12px">
+              <a class="btn" href="mailto:kakadwiapril@gmail.com">Hubungi via Email</a>
+              <a class="btn secondary" href="#about" onclick="copyProfile()">Salin Nama</a>
+            </div>
+          </div>
+
+          <div class="block" style="padding:12px 14px">
+            <h3>Ringkasan Cepat</h3>
+            <p style="margin:0;color:#cfe8f8">Siap bekerja penuh waktu setelah lulus, memiliki keterampilan dasar di web, jaringan, dan dukungan teknis. Mudah belajar & cepat beradaptasi.</p>
+            <div class="note">Tambahkan link LinkedIn / portfolio online untuk nilai tambah.</div>
+          </div>
+
+          <div class="block" style="padding:12px 14px">
+            <h3>Resume Singkat</h3>
+            <p style="margin:0;color:#cfe8f8">Teknik Komputer & Jaringan — SMK | Aktif organisasi | Proyek kecil: website sekolah & instalasi LAN</p>
+            <div style="margin-top:10px">
+              <a class="btn" href="#" onclick="downloadCV(event)">Download CV</a>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <div class="shape" aria-hidden="true"></div>
+    </main>
+
+    <footer style="margin-top:18px;color:var(--muted);text-align:center;font-size:0.92rem;">
+      © 2025 Kaka Dwi Aprilianto — Portofolio Pribadi. Ganti data & foto sesuai identitas Anda.
+    </footer>
+  </div>
+
+  <script>
+    // Animate skill bars on load
+    document.addEventListener("DOMContentLoaded", function(){
+      document.querySelectorAll('.bar > i').forEach(function(el, idx){
+        // small timeout to stagger
+        setTimeout(function(){
+          var v = el.getAttribute('data-value') || 70;
+          el.style.width = v + '%';
+        }, 120 + idx * 120);
+      });
+    });
+
+    // Placeholder function to download CV (replace href with actual file)
+    function downloadCV(e){
+      e && e.preventDefault && e.preventDefault();
+      // If you have a real CV url, set window.location.href = 'link-to-cv.pdf';
+      // For demo, we'll create a small text file for download
+      var filename = 'CV-Kaka-Dwi-Aprilianto.txt';
+      var content = 'Nama: Kaka Dwi Aprilianto\\nEmail: kakadwiapril@gmail.com\\nHP: +62xxxxxxxxxx\\nRingkasan: ... (ganti dengan informasi nyata)';
+      var blob = new Blob([content], {type: 'text/plain'});
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url; a.download = filename;
+      document.body.appendChild(a); a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    // Copy name to clipboard
+    function copyProfile(){
+      navigator.clipboard && navigator.clipboard.writeText && navigator.clipboard.writeText('Kaka Dwi Aprilianto')
+        .then(()=> alert('Nama disalin ke clipboard'))
+        .catch(()=> alert('Gagal menyalin, silakan salin manual.'));
+    }
+  </script>
+</body>
+</html>
